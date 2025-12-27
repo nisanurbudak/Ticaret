@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Ticaret.Models.Siparisler>
+
+@{
+    ViewBag.Title = "Siparişler";
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.siparis_tarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fiyat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.durum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ad_soyad)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Adres)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Odemeler.odeme_tipi)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.siparis_tarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fiyat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.durum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ad_soyad)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Adres)
+            </td>
+         
+            <td>
+                @Html.DisplayFor(modelItem => item.Odemeler.odeme_tipi)
+            </td>
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.siparis_id }) |
+
+                @Html.ActionLink("Detaylar", "SiparisDetaylari2", new { id = item.siparis_id }) |
+
+                @Html.ActionLink("Sil", "Delete", new { id = item.siparis_id })
+            </td>
+        </tr>
+    }
+
+</table>

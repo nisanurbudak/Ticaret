@@ -1,0 +1,74 @@
+﻿@model Ticaret.Models.Siparisler
+
+@{
+    ViewBag.Title = "Detaylar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Detaylar</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ad_soyad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ad_soyad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.siparis_tarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.siparis_tarihi)
+        </dd>
+      
+        <dt>
+            @Html.DisplayNameFor(model => model.fiyat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fiyat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.durum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.durum)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adres)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Odemeler.odeme_tipi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Odemeler.odeme_tipi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.siparis_id }, new { @class = "btn btn-success" })
+
+
+    <div class="form-group" style="margin-top: 20px;">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("Geri Dön", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+
+</p>

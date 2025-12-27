@@ -1,0 +1,46 @@
+﻿@model Ticaret.Models.Sepet
+@{
+    ViewBag.Title = "SiparisOlustur";
+}
+
+<h2>Sipariş Oluştur</h2>
+
+<h3>Seçili Ürünler</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ürün Adı</th>
+            <th>Adet</th>
+            <th>Fiyat</th>
+            <th>Toplam</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Sepet)
+        {
+            <tr>
+                <td>@item.Urunler.urun_adi</td>
+                <td>@item.adet</td>
+                <td>@item.Urunler.fiyat</td>
+                <td>@(item.Urunler.fiyat * item.adet)</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right"><strong>Toplam:</strong></td>
+            <td>
+                @Html.DisplayFor(model => model.Sepet.Sum(s => s.Urunler.fiyat * s.adet))
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<h3>Ödeme Bilgileri</h3>
+<p>Ödeme Türü: @Session["odemeTipi"]</p> <!-- Ödeme türü, önceki sayfadan alınabilir -->
+
+@using (Html.BeginForm("SiparisOlustur", "Sepet", FormMethod.Post))
+{
+    <input type="submit" value="Sipariş Oluştur" class="btn btn-primary" />
+}
+

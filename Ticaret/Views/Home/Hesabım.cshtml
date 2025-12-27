@@ -1,0 +1,43 @@
+﻿@model Ticaret.Models.Musteriler
+
+@{
+    ViewBag.Title = "Hesabım";
+}
+
+<div class="container mt-5">
+    <h2 class="mt-4">Hesap Ayarları</h2>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <p class="card-text"><strong>Ad Soyad:</strong> @Model.ad_soyad</p>
+            <p class="card-text"><strong>Kullanıcı Adı:</strong> @Model.kullanici_adi</p>
+            <p class="card-text"><strong>Email:</strong> @Model.email</p>
+            <p class="card-text"><strong>Telefon:</strong> @Model.telefon</p>
+           
+        </div>
+    </div>
+
+    <div class="mt-4">
+        @using (Html.BeginForm("Details", "Musterilers", FormMethod.Get, new { @class = "d-inline" }))
+        {
+            @Html.Hidden("id", Model.musteri_id)
+            <button type="submit" class="btn btn-info">Detaylar <i class="fas fa-plus" style="color: white; font-size: 15px;"></i> </button>
+        }
+        @using (Html.BeginForm("Edit", "Musterilers", FormMethod.Get, new { @class = "d-inline" }))
+        {
+            @Html.Hidden("id", Model.musteri_id)
+            <button type="submit" class="btn btn-success">Düzenle <i class="fa fa-paint-brush" style="color: white; font-size: 15px;"></i></button>
+        }
+        @using (Html.BeginForm("Delete", "Musterilers", FormMethod.Get, new { @class = "d-inline" }))
+        {
+            @Html.Hidden("id", Model.musteri_id)
+            <button type="submit" class="btn btn-danger">Sil <i class="fas fa-trash" style="color: white; font-size: 15px;"></i></button>
+        }
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "d-inline" }))
+        {
+            @Html.Hidden("id", Model.musteri_id)
+            <button type="submit" class="btn btn-primary">Anasayfaya Dön <i class="fas fa-home" style="color: white; font-size: 15px;"></i></button>
+        }
+        <a href="@Url.Action("LogOut", "Home")" class="btn btn-danger">Çıkış Yap <i class="fa fa-ban" style="color: white; font-size: 15px;"></i></a>
+    </div>
+</div>

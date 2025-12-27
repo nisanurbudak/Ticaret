@@ -1,0 +1,41 @@
+﻿@model Ticaret.Models.kategoriler
+
+@{
+    ViewBag.Title = "Oluştur";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="text-center"><h2>Yeni Kategori Oluştur</h2></div>
+
+    @using (Html.BeginForm("Create", "kategorilers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal"style="max-width: 800px; margin: 0 auto;">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.kategori_ad, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.kategori_ad, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.kategori_ad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.kategori_resim, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" id="kategori_resim" name="kategori_resim" class="form-control" />
+                    @Html.ValidationMessageFor(model => model.kategori_resim, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <h2></h2>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10 text-center">
+                    <input type="submit" value="Oluştur" class="btn btn-success style="margin-right: 10px;" />
+                    @Html.ActionLink("Geri Dön", "Index", "kategorilers", null, new { @class = "btn btn-secondary" })
+                </div>
+            </div>
+        </div>
+    }

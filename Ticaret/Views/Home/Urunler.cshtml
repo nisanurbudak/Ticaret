@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Ticaret.Models.Urunler>
+@{
+    ViewBag.Title = "Urunler";
+}
+
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="success-message" class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="error-message" class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+<head>
+    <style>
+        .description {
+            max-height: 4.5em;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .toggle-description {
+            display: block;
+            margin-top: 5px;
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<div class="row">
+    @foreach (var urun in Model)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+               <div class="card-header">
+                 @urun.Saticilar.sirket_adi
+               </div>
+                <div class="card-body d-flex flex-column">
+                    <div class="flex-grow-1">
+                        <div class="text-center">
+                            <img src="@urun.picture" alt="Ürün Resmi" class="img-fluid" style="max-width: 100%; max-height: 150px; object-fit: cover;" />
+                        </div>
+
+                        <h2></h2>
+                        <h5 class="card-title">@urun.urun_adi</h5>
+
+                        <p class="card-text description">
+                            @urun.aciklamasi
+                        </p>
+                        <a href="@Url.Action("Details2", "Urunler", new { id = urun.urun_id })" class="toggle-description">Daha fazla göster</a>
+
+                       <hr />
+                        <h6 class="card-title">Fiyat: @urun.fiyat</h6>
+                        <hr />
+                    </div>
+                    <div class="mt-3">
+
+                        <form action="@Url.Action("AddToFavorites1", "Favoriler")" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="urun_id" value="@urun.urun_id" />
+                            <button type="submit" class="btn btn-link p-0">
+                                <i class="fas fa-heart" style="color: red; font-size: 24px;"></i>
+                            </button>
+                        </form>
+                        <h2></h2>
+                        <form action="@Url.Action("SepeteEkle", "Sepet")" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="urun_id" value="@urun.urun_id" />
+                            <button type="submit" class="btn btn-primary w-100 mb-2">Sepete Ekle <i class="fas fa-shopping-cart" style="color: white; font-size: 15px;"></i></button>
+                        </form>
+                        <a href="@Url.Action("Details2", "Urunler", new { id = urun.urun_id })" class="btn btn-secondary w-100">Ürüne Git <i class="fas fa-forward" style="color: white; font-size: 15px;"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+
+
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+            var successMessage = document.getElementById('success-message');
+            if (successMessage) {
+                successMessage.style.display = 'none';
+            }
+            var errorMessage = document.getElementById('error-message');
+            if (errorMessage) {
+                errorMessage.style.display = 'none';
+            }
+        }, 2000);
+    });
+</script>

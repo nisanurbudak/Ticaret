@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Ticaret.Models.Saticilar>
+
+@{
+    ViewData["Title"] = "Anasayfa";
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Hoşgeldiniz @ViewBag.KullaniciAdi !!!</h1>
+    <h2>İyi alışverişler dileriz.</h2>
+</div>
+<hr />
+
+
+<style>
+    .button-container {
+        margin-left: 20px;
+    }
+
+    .button-container:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="d-flex align-items-center mb-3">
+    <h2 class="mr-3 text-bg-danger">Haydi, Alışverişe Başla! En Yeni Ürünleri Keşfet!</h2>
+
+    <a href="@Url.Action("Index1", "Urunler")" class="btn btn-danger button-container">Ürünleri Gör <i class="fas fa-forward" style="color: white; font-size: 15px; "></i></a>
+
+</div>
+
+<hr />
+
+<div>
+    <h2> <p class="text-bg-info">Aradığın Markalar Burada!</p></h2>
+    <div>
+        <style>
+            .card {
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                transition: transform 0.3s;
+            }
+
+            .card:hover {
+                transform: scale(1.05);
+            }
+
+            .card-title {
+                font-size: 1.2em;
+                font-weight: bold;
+            }
+
+            .card-body {
+                padding: 15px;
+            }
+        </style>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            @foreach (var satici in Model)
+            {
+                <div class="col-md-3">
+                    <div class="card mb-3">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@satici.sirket_adi</h5>
+                            <a href="@Url.Action("Urunler", "Home", new { id = satici.satici_id })" class="btn btn-primary">Ürünleri Gör <i class="fas fa-forward" style="color: white; font-size: 15px;"></i></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

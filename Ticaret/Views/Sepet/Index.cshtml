@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Ticaret.Models.Sepet>
+
+@{
+    ViewBag.Title = "Sepet";
+}
+
+<h2>Sepet</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ürün</th>
+            <th>Ürün Adı</th>
+            <th>Fiyat</th>
+            <th>Adet</th>
+            <th>Toplam</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                
+                <td>
+                    <img src="@item.Urunler.picture" alt="Ürün Resmi" class="img-fluid" style="max-width: 100%; max-height: 150px; object-fit: cover;" />
+                </td>
+                <td>@item.Urunler.urun_adi</td>
+                <td>@item.Urunler.fiyat</td>
+                <td>
+                    @using (Html.BeginForm("AdetiGüncelle", "Sepet", FormMethod.Post))
+                    {
+                        <input type="hidden" name="sepet_id" value="@item.sepet_id" />
+                        <input type="number" name="adet" value="@item.adet" min="1" class="form-control" style="width: 60px; display: inline-block;" />
+                        <button type="submit" class="btn btn-warning">Güncelle <i class="fa fa-undo aria-hidden=" true"" style="color: black; font-size: 15px;"></i></button>
+                    }
+                </td>
+                <td>@(item.Urunler.fiyat * item.adet)</td>
+                <td>
+                    @using (Html.BeginForm("SepettenSil", "Sepet", FormMethod.Post))
+                    {
+                        <input type="hidden" name="sepet_id" value="@item.sepet_id" />
+                        <button type="submit" class="btn btn-danger">Kaldır <i class="fas fa-trash" style="color: white; font-size: 15px;"></i></button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" class="text-right"><strong>Toplam:</strong></td>
+            <td  colspan="3">
+                @Html.Raw(Model.Sum(item => item.Urunler.fiyat * item.adet)) TL
+            </td>
+
+        </tr>
+    </tfoot>
+</table>
+
+<div class="text-center">
+    <a href="@Url.Action("Index1", "Urunler")" class="btn btn-primary">Alışverişe Devam Et <i class="fas fa-shopping-cart" style="color: white; font-size: 15px;"></i></a>
+    <hr />
+    @if (!Model.Any())
+    {
+        <p class="text-warning">Sepetiniz boş. Satın almak için ürün ekleyin.</p>
+    }
+    else
+    {
+        <a href="@Url.Action("Adres", "Sepet")" class="btn btn-success">Satın Al <i class="fas fa-shopping-bag" style="color: white; font-size: 15px;"></i></a>
+
+    }
+
+    </div>

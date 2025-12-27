@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Ticaret.Models.Siparisdetay>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fiyat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.toplam_fiyat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Siparisler.durum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Urunler.urun_adi)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fiyat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.toplam_fiyat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Siparisler.durum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Urunler.urun_adi)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.siparis_detay_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.siparis_detay_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.siparis_detay_id })
+        </td>
+    </tr>
+}
+
+</table>

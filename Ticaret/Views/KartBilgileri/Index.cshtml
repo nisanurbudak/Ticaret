@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Ticaret.Models.KartBilgileri>
+
+@{
+    ViewBag.Title = "Kartlar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+  
+    var uniqueCards = Model.GroupBy(k => k.kart_numarasi).Select(g => g.First()).ToList();
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().kart_numarasi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Cvv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().SonKullanmaTarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Musteriler.ad_soyad)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in uniqueCards)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.kart_numarasi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cvv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SonKullanmaTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Musteriler.ad_soyad)
+            </td>
+            <td>
+               
+                @Html.ActionLink("Detaylar", "Details", new { id = item.kart_id }) |
+                @Html.ActionLink("Sil", "Delete", new { id = item.kart_id })
+            </td>
+        </tr>
+    }
+</table>

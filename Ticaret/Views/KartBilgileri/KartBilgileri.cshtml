@@ -1,0 +1,97 @@
+﻿@model Ticaret.Models.KartBilgileri
+@{
+    ViewBag.Title = "KartBilgileri";
+}
+
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .btn-success {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .field-validation-error {
+        color: red;
+    }
+</style>
+
+<div class="form-container">
+    <h2 class="text-center">Kart Bilgileri</h2>
+
+    @using (Html.BeginForm("Onayla", "KartBilgileri", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.kart_numarasi)
+            @Html.TextBoxFor(model => model.kart_numarasi, new { @class = "form-control", @maxlength = "16" })
+            @Html.ValidationMessageFor(model => model.kart_numarasi)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cvv)
+            @Html.TextBoxFor(model => model.Cvv, new { @class = "form-control", @maxlength = "3" })
+            @Html.ValidationMessageFor(model => model.Cvv)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.SonKullanmaTarihi)
+            @Html.TextBoxFor(m => m.SonKullanmaTarihi, "{0:MM/yyyy}", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.SonKullanmaTarihi)
+        </div>
+
+        <input type="hidden" name="odemeTipi" value="Kartla Ödeme" />
+        <hr />
+
+        <button type="submit" class="btn btn-success">Siparişi Onayla <i class="fa fa-shopping-bag" aria-hidden="true"></i></button>
+
+        <hr />
+        <div class="text-center">
+            <a href="@Url.Action("Adres", "Sepet")" class="btn btn-danger">
+                İptal <i class="fa fa-times"></i>
+            </a>
+        </div>
+    }
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $('#kart_numarasi').on('input', function () {
+                this.value = this.value.replace(/[^0-9]/g, '');
+                if (this.value.length > 16) {
+                    this.value = this.value.slice(0, 16);
+                }
+            });
+
+            $('#Cvv').on('input', function () {
+                this.value = this.value.replace(/[^0-9]/g, '');
+                if (this.value.length > 3) {
+                    this.value = this.value.slice(0, 3);
+                }
+            });
+        });
+    </script>
+    }

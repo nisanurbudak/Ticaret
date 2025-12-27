@@ -1,0 +1,64 @@
+﻿@model Ticaret.Models.Siparisdetay
+
+@{
+    ViewBag.Title = "Detaylar";
+}
+
+<h2>Detaylar</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fiyat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fiyat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.toplam_fiyat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.toplam_fiyat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Siparisler.durum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Siparisler.durum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Urunler.urun_adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Urunler.urun_adi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.siparis_id }, new { @class = "btn btn-success" })
+
+
+    <div class="form-group" style="margin-top: 20px;">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("Geri Dön", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+
+</p>

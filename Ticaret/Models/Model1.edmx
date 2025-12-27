@@ -1,0 +1,926 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ticaretModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Favoriler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteri_id" Type="int" Nullable="false" />
+          <Property Name="urun_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KartBilgileri">
+          <Key>
+            <PropertyRef Name="kart_id" />
+          </Key>
+          <Property Name="kart_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kart_numarasi" Type="nvarchar(max)" />
+          <Property Name="Cvv" Type="int" />
+          <Property Name="SonKullanmaTarihi" Type="date" />
+          <Property Name="musteri_id" Type="int" />
+          <Property Name="odeme_tipi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="kategoriler">
+          <Key>
+            <PropertyRef Name="kategori_id" />
+          </Key>
+          <Property Name="kategori_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategori_ad" Type="varchar" MaxLength="255" />
+          <Property Name="kategori_resim" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Musteriler">
+          <Key>
+            <PropertyRef Name="musteri_id" />
+          </Key>
+          <Property Name="musteri_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad_soyad" Type="varchar" MaxLength="255" />
+          <Property Name="kullanici_adi" Type="varchar" MaxLength="50" />
+          <Property Name="sifre" Type="varchar" MaxLength="255" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="telefon" Type="varchar" MaxLength="50" />
+          <Property Name="adres" Type="text" />
+          <Property Name="ulke" Type="varchar" MaxLength="50" />
+          <Property Name="sehir" Type="varchar" MaxLength="50" />
+          <Property Name="ilce" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Odemeler">
+          <Key>
+            <PropertyRef Name="odeme_id" />
+          </Key>
+          <Property Name="odeme_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="odeme_tipi" Type="varchar" MaxLength="50" />
+          <Property Name="siparis_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Roller">
+          <Key>
+            <PropertyRef Name="rol_id" />
+          </Key>
+          <Property Name="rol_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rol_adi" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Saticilar">
+          <Key>
+            <PropertyRef Name="satici_id" />
+          </Key>
+          <Property Name="satici_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sirket_adi" Type="varchar" MaxLength="255" />
+          <Property Name="satici_ad_soyad" Type="varchar" MaxLength="255" />
+          <Property Name="telefon" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="adres" Type="text" />
+          <Property Name="ulke" Type="varchar" MaxLength="50" />
+          <Property Name="sehir" Type="varchar" MaxLength="50" />
+          <Property Name="ilce" Type="varchar" MaxLength="50" />
+          <Property Name="musteri_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Sepet">
+          <Key>
+            <PropertyRef Name="sepet_id" />
+          </Key>
+          <Property Name="sepet_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteri_id" Type="int" Nullable="false" />
+          <Property Name="urun_id" Type="int" Nullable="false" />
+          <Property Name="adet" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Siparisdetay">
+          <Key>
+            <PropertyRef Name="siparis_detay_id" />
+          </Key>
+          <Property Name="siparis_detay_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urun_id" Type="int" />
+          <Property Name="siparis_id" Type="int" />
+          <Property Name="fiyat" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="adet" Type="int" />
+          <Property Name="toplam_fiyat" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Siparisler">
+          <Key>
+            <PropertyRef Name="siparis_id" />
+          </Key>
+          <Property Name="siparis_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteri_id" Type="int" />
+          <Property Name="odeme_id" Type="int" />
+          <Property Name="siparis_tarihi" Type="date" />
+          <Property Name="fiyat" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="durum" Type="varchar" MaxLength="50" />
+          <Property Name="ad_soyad" Type="nvarchar(max)" />
+          <Property Name="adres_tanimi" Type="nvarchar(max)" />
+          <Property Name="Adres" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Urunler">
+          <Key>
+            <PropertyRef Name="urun_id" />
+          </Key>
+          <Property Name="urun_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urun_adi" Type="varchar" MaxLength="255" />
+          <Property Name="aciklamasi" Type="text" />
+          <Property Name="fiyat" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="stok" Type="int" />
+          <Property Name="satici_id" Type="int" />
+          <Property Name="kategori_id" Type="int" />
+          <Property Name="picture" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK__Saticilar__muste__398D8EEE">
+          <End Role="Musteriler" Type="Self.Musteriler" Multiplicity="0..1" />
+          <End Role="Saticilar" Type="Self.Saticilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteriler">
+              <PropertyRef Name="musteri_id" />
+            </Principal>
+            <Dependent Role="Saticilar">
+              <PropertyRef Name="musteri_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Siparisde__sipar__45F365D3">
+          <End Role="Siparisler" Type="Self.Siparisler" Multiplicity="0..1" />
+          <End Role="Siparisdetay" Type="Self.Siparisdetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Siparisler">
+              <PropertyRef Name="siparis_id" />
+            </Principal>
+            <Dependent Role="Siparisdetay">
+              <PropertyRef Name="siparis_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Siparisde__urun___44FF419A">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+          <End Role="Siparisdetay" Type="Self.Siparisdetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="urun_id" />
+            </Principal>
+            <Dependent Role="Siparisdetay">
+              <PropertyRef Name="urun_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Siparisle__muste__3C69FB99">
+          <End Role="Musteriler" Type="Self.Musteriler" Multiplicity="0..1" />
+          <End Role="Siparisler" Type="Self.Siparisler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteriler">
+              <PropertyRef Name="musteri_id" />
+            </Principal>
+            <Dependent Role="Siparisler">
+              <PropertyRef Name="musteri_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Urunler__kategor__4222D4EF">
+          <End Role="kategoriler" Type="Self.kategoriler" Multiplicity="0..1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kategoriler">
+              <PropertyRef Name="kategori_id" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Urunler__satici___412EB0B6">
+          <End Role="Saticilar" Type="Self.Saticilar" Multiplicity="0..1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Saticilar">
+              <PropertyRef Name="satici_id" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="satici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favoriler_Musteriler">
+          <End Role="Musteriler" Type="Self.Musteriler" Multiplicity="1" />
+          <End Role="Favoriler" Type="Self.Favoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteriler">
+              <PropertyRef Name="musteri_id" />
+            </Principal>
+            <Dependent Role="Favoriler">
+              <PropertyRef Name="musteri_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favoriler_Urunler">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="1" />
+          <End Role="Favoriler" Type="Self.Favoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="urun_id" />
+            </Principal>
+            <Dependent Role="Favoriler">
+              <PropertyRef Name="urun_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KartBilgileri_Musteriler">
+          <End Role="Musteriler" Type="Self.Musteriler" Multiplicity="0..1" />
+          <End Role="KartBilgileri" Type="Self.KartBilgileri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteriler">
+              <PropertyRef Name="musteri_id" />
+            </Principal>
+            <Dependent Role="KartBilgileri">
+              <PropertyRef Name="musteri_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odemeler_Siparisler">
+          <End Role="Siparisler" Type="Self.Siparisler" Multiplicity="0..1" />
+          <End Role="Odemeler" Type="Self.Odemeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Siparisler">
+              <PropertyRef Name="siparis_id" />
+            </Principal>
+            <Dependent Role="Odemeler">
+              <PropertyRef Name="siparis_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sepet_Musteriler">
+          <End Role="Musteriler" Type="Self.Musteriler" Multiplicity="1" />
+          <End Role="Sepet" Type="Self.Sepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteriler">
+              <PropertyRef Name="musteri_id" />
+            </Principal>
+            <Dependent Role="Sepet">
+              <PropertyRef Name="musteri_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sepet_Urunler">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="1" />
+          <End Role="Sepet" Type="Self.Sepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="urun_id" />
+            </Principal>
+            <Dependent Role="Sepet">
+              <PropertyRef Name="urun_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparisler_Musteriler">
+          <End Role="Musteriler" Type="Self.Musteriler" Multiplicity="0..1" />
+          <End Role="Siparisler" Type="Self.Siparisler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteriler">
+              <PropertyRef Name="musteri_id" />
+            </Principal>
+            <Dependent Role="Siparisler">
+              <PropertyRef Name="musteri_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparisler_Odemeler">
+          <End Role="Odemeler" Type="Self.Odemeler" Multiplicity="0..1" />
+          <End Role="Siparisler" Type="Self.Siparisler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odemeler">
+              <PropertyRef Name="odeme_id" />
+            </Principal>
+            <Dependent Role="Siparisler">
+              <PropertyRef Name="odeme_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ticaretModelStoreContainer">
+          <EntitySet Name="Favoriler" EntityType="Self.Favoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KartBilgileri" EntityType="Self.KartBilgileri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kategoriler" EntityType="Self.kategoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Musteriler" EntityType="Self.Musteriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Odemeler" EntityType="Self.Odemeler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roller" EntityType="Self.Roller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Saticilar" EntityType="Self.Saticilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sepet" EntityType="Self.Sepet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Siparisdetay" EntityType="Self.Siparisdetay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Siparisler" EntityType="Self.Siparisler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Urunler" EntityType="Self.Urunler" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Saticilar__muste__398D8EEE" Association="Self.FK__Saticilar__muste__398D8EEE">
+            <End Role="Musteriler" EntitySet="Musteriler" />
+            <End Role="Saticilar" EntitySet="Saticilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Siparisde__sipar__45F365D3" Association="Self.FK__Siparisde__sipar__45F365D3">
+            <End Role="Siparisler" EntitySet="Siparisler" />
+            <End Role="Siparisdetay" EntitySet="Siparisdetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Siparisde__urun___44FF419A" Association="Self.FK__Siparisde__urun___44FF419A">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="Siparisdetay" EntitySet="Siparisdetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Siparisle__muste__3C69FB99" Association="Self.FK__Siparisle__muste__3C69FB99">
+            <End Role="Musteriler" EntitySet="Musteriler" />
+            <End Role="Siparisler" EntitySet="Siparisler" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Urunler__kategor__4222D4EF" Association="Self.FK__Urunler__kategor__4222D4EF">
+            <End Role="kategoriler" EntitySet="kategoriler" />
+            <End Role="Urunler" EntitySet="Urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Urunler__satici___412EB0B6" Association="Self.FK__Urunler__satici___412EB0B6">
+            <End Role="Saticilar" EntitySet="Saticilar" />
+            <End Role="Urunler" EntitySet="Urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favoriler_Musteriler" Association="Self.FK_Favoriler_Musteriler">
+            <End Role="Musteriler" EntitySet="Musteriler" />
+            <End Role="Favoriler" EntitySet="Favoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favoriler_Urunler" Association="Self.FK_Favoriler_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="Favoriler" EntitySet="Favoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KartBilgileri_Musteriler" Association="Self.FK_KartBilgileri_Musteriler">
+            <End Role="Musteriler" EntitySet="Musteriler" />
+            <End Role="KartBilgileri" EntitySet="KartBilgileri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odemeler_Siparisler" Association="Self.FK_Odemeler_Siparisler">
+            <End Role="Siparisler" EntitySet="Siparisler" />
+            <End Role="Odemeler" EntitySet="Odemeler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sepet_Musteriler" Association="Self.FK_Sepet_Musteriler">
+            <End Role="Musteriler" EntitySet="Musteriler" />
+            <End Role="Sepet" EntitySet="Sepet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sepet_Urunler" Association="Self.FK_Sepet_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="Sepet" EntitySet="Sepet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparisler_Musteriler" Association="Self.FK_Siparisler_Musteriler">
+            <End Role="Musteriler" EntitySet="Musteriler" />
+            <End Role="Siparisler" EntitySet="Siparisler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparisler_Odemeler" Association="Self.FK_Siparisler_Odemeler">
+            <End Role="Odemeler" EntitySet="Odemeler" />
+            <End Role="Siparisler" EntitySet="Siparisler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ticaretModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="kategoriler">
+          <Key>
+            <PropertyRef Name="kategori_id" />
+          </Key>
+          <Property Name="kategori_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategori_ad" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK__Urunler__kategor__4222D4EF" FromRole="kategoriler" ToRole="Urunler" />
+          <Property Name="kategori_resim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Musteriler">
+          <Key>
+            <PropertyRef Name="musteri_id" />
+          </Key>
+          <Property Name="musteri_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad_soyad" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="kullanici_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sifre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ulke" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sehir" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ilce" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Saticilar" Relationship="Self.FK__Saticilar__muste__398D8EEE" FromRole="Musteriler" ToRole="Saticilar" />
+          <NavigationProperty Name="Siparisler" Relationship="Self.FK__Siparisle__muste__3C69FB99" FromRole="Musteriler" ToRole="Siparisler" />
+          <NavigationProperty Name="Sepet" Relationship="ticaretModel.FK_Sepet_Musteriler" FromRole="Musteriler" ToRole="Sepet" />
+          <NavigationProperty Name="Favoriler" Relationship="ticaretModel.FK_Favoriler_Musteriler" FromRole="Musteriler" ToRole="Favoriler" />
+          <NavigationProperty Name="KartBilgileri" Relationship="ticaretModel.FK_KartBilgileri_Musteriler" FromRole="Musteriler" ToRole="KartBilgileri" />
+        </EntityType>
+        <EntityType Name="Odemeler">
+          <Key>
+            <PropertyRef Name="odeme_id" />
+          </Key>
+          <Property Name="odeme_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="odeme_tipi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Siparisler" Relationship="ticaretModel.FK_Siparisler_Odemeler" FromRole="Odemeler" ToRole="Siparisler" />
+          <Property Name="siparis_id" Type="Int32" />
+          <NavigationProperty Name="Siparisler1" Relationship="ticaretModel.FK_Odemeler_Siparisler" FromRole="Odemeler" ToRole="Siparisler" />
+        </EntityType>
+        <EntityType Name="Roller">
+          <Key>
+            <PropertyRef Name="rol_id" />
+          </Key>
+          <Property Name="rol_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rol_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Saticilar">
+          <Key>
+            <PropertyRef Name="satici_id" />
+          </Key>
+          <Property Name="satici_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sirket_adi" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="satici_ad_soyad" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ulke" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sehir" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ilce" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="musteri_id" Type="Int32" />
+          <NavigationProperty Name="Musteriler" Relationship="Self.FK__Saticilar__muste__398D8EEE" FromRole="Saticilar" ToRole="Musteriler" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK__Urunler__satici___412EB0B6" FromRole="Saticilar" ToRole="Urunler" />
+        </EntityType>
+        <EntityType Name="Siparisdetay">
+          <Key>
+            <PropertyRef Name="siparis_detay_id" />
+          </Key>
+          <Property Name="siparis_detay_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urun_id" Type="Int32" />
+          <Property Name="siparis_id" Type="Int32" />
+          <Property Name="fiyat" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="adet" Type="Int32" />
+          <Property Name="toplam_fiyat" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Siparisler" Relationship="Self.FK__Siparisde__sipar__45F365D3" FromRole="Siparisdetay" ToRole="Siparisler" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK__Siparisde__urun___44FF419A" FromRole="Siparisdetay" ToRole="Urunler" />
+        </EntityType>
+        <EntityType Name="Siparisler">
+          <Key>
+            <PropertyRef Name="siparis_id" />
+          </Key>
+          <Property Name="siparis_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musteri_id" Type="Int32" />
+          <Property Name="odeme_id" Type="Int32" />
+          <Property Name="siparis_tarihi" Type="DateTime" Precision="0" />
+          <Property Name="fiyat" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="durum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Musteriler" Relationship="Self.FK__Siparisle__muste__3C69FB99" FromRole="Siparisler" ToRole="Musteriler" />
+          <NavigationProperty Name="Siparisdetay" Relationship="Self.FK__Siparisde__sipar__45F365D3" FromRole="Siparisler" ToRole="Siparisdetay" />
+          <NavigationProperty Name="Odemeler" Relationship="ticaretModel.FK_Siparisler_Odemeler" FromRole="Siparisler" ToRole="Odemeler" />
+          <Property Name="ad_soyad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="adres_tanimi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Odemeler1" Relationship="ticaretModel.FK_Odemeler_Siparisler" FromRole="Siparisler" ToRole="Odemeler" />
+        </EntityType>
+        <EntityType Name="Urunler">
+          <Key>
+            <PropertyRef Name="urun_id" />
+          </Key>
+          <Property Name="urun_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urun_adi" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="aciklamasi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fiyat" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="stok" Type="Int32" />
+          <Property Name="satici_id" Type="Int32" />
+          <Property Name="kategori_id" Type="Int32" />
+          <NavigationProperty Name="kategoriler" Relationship="Self.FK__Urunler__kategor__4222D4EF" FromRole="Urunler" ToRole="kategoriler" />
+          <NavigationProperty Name="Saticilar" Relationship="Self.FK__Urunler__satici___412EB0B6" FromRole="Urunler" ToRole="Saticilar" />
+          <NavigationProperty Name="Siparisdetay" Relationship="Self.FK__Siparisde__urun___44FF419A" FromRole="Urunler" ToRole="Siparisdetay" />
+          <Property Name="picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sepet" Relationship="ticaretModel.FK_Sepet_Urunler" FromRole="Urunler" ToRole="Sepet" />
+          <NavigationProperty Name="Favoriler" Relationship="ticaretModel.FK_Favoriler_Urunler" FromRole="Urunler" ToRole="Favoriler" />
+        </EntityType>
+        <Association Name="FK__Urunler__kategor__4222D4EF">
+          <End Role="kategoriler" Type="Self.kategoriler" Multiplicity="0..1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kategoriler">
+              <PropertyRef Name="kategori_id" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Saticilar__muste__398D8EEE">
+          <End Role="Musteriler" Type="Self.Musteriler" Multiplicity="0..1" />
+          <End Role="Saticilar" Type="Self.Saticilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteriler">
+              <PropertyRef Name="musteri_id" />
+            </Principal>
+            <Dependent Role="Saticilar">
+              <PropertyRef Name="musteri_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Siparisle__muste__3C69FB99">
+          <End Role="Musteriler" Type="Self.Musteriler" Multiplicity="0..1" />
+          <End Role="Siparisler" Type="Self.Siparisler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteriler">
+              <PropertyRef Name="musteri_id" />
+            </Principal>
+            <Dependent Role="Siparisler">
+              <PropertyRef Name="musteri_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Urunler__satici___412EB0B6">
+          <End Role="Saticilar" Type="Self.Saticilar" Multiplicity="0..1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Saticilar">
+              <PropertyRef Name="satici_id" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="satici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Siparisde__sipar__45F365D3">
+          <End Role="Siparisler" Type="Self.Siparisler" Multiplicity="0..1" />
+          <End Role="Siparisdetay" Type="Self.Siparisdetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Siparisler">
+              <PropertyRef Name="siparis_id" />
+            </Principal>
+            <Dependent Role="Siparisdetay">
+              <PropertyRef Name="siparis_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Siparisde__urun___44FF419A">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+          <End Role="Siparisdetay" Type="Self.Siparisdetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="urun_id" />
+            </Principal>
+            <Dependent Role="Siparisdetay">
+              <PropertyRef Name="urun_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ticaretEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="kategoriler" EntityType="Self.kategoriler" />
+          <EntitySet Name="Musteriler" EntityType="Self.Musteriler" />
+          <EntitySet Name="Odemeler" EntityType="Self.Odemeler" />
+          <EntitySet Name="Roller" EntityType="Self.Roller" />
+          <EntitySet Name="Saticilar" EntityType="Self.Saticilar" />
+          <EntitySet Name="Siparisdetay" EntityType="Self.Siparisdetay" />
+          <EntitySet Name="Siparisler" EntityType="Self.Siparisler" />
+          <EntitySet Name="Urunler" EntityType="Self.Urunler" />
+          <AssociationSet Name="FK__Urunler__kategor__4222D4EF" Association="Self.FK__Urunler__kategor__4222D4EF">
+            <End Role="kategoriler" EntitySet="kategoriler" />
+            <End Role="Urunler" EntitySet="Urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Saticilar__muste__398D8EEE" Association="Self.FK__Saticilar__muste__398D8EEE">
+            <End Role="Musteriler" EntitySet="Musteriler" />
+            <End Role="Saticilar" EntitySet="Saticilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Siparisle__muste__3C69FB99" Association="Self.FK__Siparisle__muste__3C69FB99">
+            <End Role="Musteriler" EntitySet="Musteriler" />
+            <End Role="Siparisler" EntitySet="Siparisler" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Urunler__satici___412EB0B6" Association="Self.FK__Urunler__satici___412EB0B6">
+            <End Role="Saticilar" EntitySet="Saticilar" />
+            <End Role="Urunler" EntitySet="Urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Siparisde__sipar__45F365D3" Association="Self.FK__Siparisde__sipar__45F365D3">
+            <End Role="Siparisler" EntitySet="Siparisler" />
+            <End Role="Siparisdetay" EntitySet="Siparisdetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Siparisde__urun___44FF419A" Association="Self.FK__Siparisde__urun___44FF419A">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="Siparisdetay" EntitySet="Siparisdetay" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="ticaretModel.sysdiagrams" />
+          <EntitySet Name="Sepet" EntityType="ticaretModel.Sepet" />
+          <AssociationSet Name="FK_Sepet_Musteriler" Association="ticaretModel.FK_Sepet_Musteriler">
+            <End Role="Musteriler" EntitySet="Musteriler" />
+            <End Role="Sepet" EntitySet="Sepet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sepet_Urunler" Association="ticaretModel.FK_Sepet_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="Sepet" EntitySet="Sepet" />
+          </AssociationSet>
+          <EntitySet Name="Favoriler" EntityType="ticaretModel.Favoriler" />
+          <AssociationSet Name="FK_Favoriler_Musteriler" Association="ticaretModel.FK_Favoriler_Musteriler">
+            <End Role="Musteriler" EntitySet="Musteriler" />
+            <End Role="Favoriler" EntitySet="Favoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favoriler_Urunler" Association="ticaretModel.FK_Favoriler_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="Favoriler" EntitySet="Favoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparisler_Odemeler" Association="ticaretModel.FK_Siparisler_Odemeler">
+            <End Role="Odemeler" EntitySet="Odemeler" />
+            <End Role="Siparisler" EntitySet="Siparisler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odemeler_Siparisler" Association="ticaretModel.FK_Odemeler_Siparisler">
+            <End Role="Siparisler" EntitySet="Siparisler" />
+            <End Role="Odemeler" EntitySet="Odemeler" />
+          </AssociationSet>
+          <EntitySet Name="KartBilgileri" EntityType="ticaretModel.KartBilgileri" />
+          <AssociationSet Name="FK_KartBilgileri_Musteriler" Association="ticaretModel.FK_KartBilgileri_Musteriler">
+            <End Role="Musteriler" EntitySet="Musteriler" />
+            <End Role="KartBilgileri" EntitySet="KartBilgileri" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Sepet">
+          <Key>
+            <PropertyRef Name="sepet_id" />
+          </Key>
+          <Property Name="sepet_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musteri_id" Type="Int32" Nullable="false" />
+          <Property Name="urun_id" Type="Int32" Nullable="false" />
+          <Property Name="adet" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Musteriler" Relationship="ticaretModel.FK_Sepet_Musteriler" FromRole="Sepet" ToRole="Musteriler" />
+          <NavigationProperty Name="Urunler" Relationship="ticaretModel.FK_Sepet_Urunler" FromRole="Sepet" ToRole="Urunler" />
+        </EntityType>
+        <Association Name="FK_Sepet_Musteriler">
+          <End Type="ticaretModel.Musteriler" Role="Musteriler" Multiplicity="1" />
+          <End Type="ticaretModel.Sepet" Role="Sepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteriler">
+              <PropertyRef Name="musteri_id" />
+            </Principal>
+            <Dependent Role="Sepet">
+              <PropertyRef Name="musteri_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sepet_Urunler">
+          <End Type="ticaretModel.Urunler" Role="Urunler" Multiplicity="1" />
+          <End Type="ticaretModel.Sepet" Role="Sepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="urun_id" />
+            </Principal>
+            <Dependent Role="Sepet">
+              <PropertyRef Name="urun_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Favoriler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musteri_id" Type="Int32" Nullable="false" />
+          <Property Name="urun_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Musteriler" Relationship="ticaretModel.FK_Favoriler_Musteriler" FromRole="Favoriler" ToRole="Musteriler" />
+          <NavigationProperty Name="Urunler" Relationship="ticaretModel.FK_Favoriler_Urunler" FromRole="Favoriler" ToRole="Urunler" />
+        </EntityType>
+        <Association Name="FK_Favoriler_Musteriler">
+          <End Type="ticaretModel.Musteriler" Role="Musteriler" Multiplicity="1" />
+          <End Type="ticaretModel.Favoriler" Role="Favoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteriler">
+              <PropertyRef Name="musteri_id" />
+            </Principal>
+            <Dependent Role="Favoriler">
+              <PropertyRef Name="musteri_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favoriler_Urunler">
+          <End Type="ticaretModel.Urunler" Role="Urunler" Multiplicity="1" />
+          <End Type="ticaretModel.Favoriler" Role="Favoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="urun_id" />
+            </Principal>
+            <Dependent Role="Favoriler">
+              <PropertyRef Name="urun_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparisler_Odemeler">
+          <End Type="ticaretModel.Odemeler" Role="Odemeler" Multiplicity="0..1" />
+          <End Type="ticaretModel.Siparisler" Role="Siparisler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odemeler">
+              <PropertyRef Name="odeme_id" />
+            </Principal>
+            <Dependent Role="Siparisler">
+              <PropertyRef Name="odeme_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odemeler_Siparisler">
+          <End Type="ticaretModel.Siparisler" Role="Siparisler" Multiplicity="0..1" />
+          <End Type="ticaretModel.Odemeler" Role="Odemeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Siparisler">
+              <PropertyRef Name="siparis_id" />
+            </Principal>
+            <Dependent Role="Odemeler">
+              <PropertyRef Name="siparis_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="KartBilgileri">
+          <Key>
+            <PropertyRef Name="kart_id" />
+          </Key>
+          <Property Name="kart_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kart_numarasi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cvv" Type="Int32" />
+          <Property Name="SonKullanmaTarihi" Type="DateTime" Precision="0" />
+          <Property Name="musteri_id" Type="Int32" />
+          <Property Name="odeme_tipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Musteriler" Relationship="ticaretModel.FK_KartBilgileri_Musteriler" FromRole="KartBilgileri" ToRole="Musteriler" />
+        </EntityType>
+        <Association Name="FK_KartBilgileri_Musteriler">
+          <End Type="ticaretModel.Musteriler" Role="Musteriler" Multiplicity="0..1" />
+          <End Type="ticaretModel.KartBilgileri" Role="KartBilgileri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteriler">
+              <PropertyRef Name="musteri_id" />
+            </Principal>
+            <Dependent Role="KartBilgileri">
+              <PropertyRef Name="musteri_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ticaretModelStoreContainer" CdmEntityContainer="ticaretEntities">
+          <EntitySetMapping Name="kategoriler">
+            <EntityTypeMapping TypeName="ticaretModel.kategoriler">
+              <MappingFragment StoreEntitySet="kategoriler">
+                <ScalarProperty Name="kategori_resim" ColumnName="kategori_resim" />
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+                <ScalarProperty Name="kategori_ad" ColumnName="kategori_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musteriler">
+            <EntityTypeMapping TypeName="ticaretModel.Musteriler">
+              <MappingFragment StoreEntitySet="Musteriler">
+                <ScalarProperty Name="musteri_id" ColumnName="musteri_id" />
+                <ScalarProperty Name="ad_soyad" ColumnName="ad_soyad" />
+                <ScalarProperty Name="kullanici_adi" ColumnName="kullanici_adi" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="ulke" ColumnName="ulke" />
+                <ScalarProperty Name="sehir" ColumnName="sehir" />
+                <ScalarProperty Name="ilce" ColumnName="ilce" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Odemeler">
+            <EntityTypeMapping TypeName="ticaretModel.Odemeler">
+              <MappingFragment StoreEntitySet="Odemeler">
+                <ScalarProperty Name="siparis_id" ColumnName="siparis_id" />
+                <ScalarProperty Name="odeme_id" ColumnName="odeme_id" />
+                <ScalarProperty Name="odeme_tipi" ColumnName="odeme_tipi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roller">
+            <EntityTypeMapping TypeName="ticaretModel.Roller">
+              <MappingFragment StoreEntitySet="Roller">
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+                <ScalarProperty Name="rol_adi" ColumnName="rol_adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saticilar">
+            <EntityTypeMapping TypeName="ticaretModel.Saticilar">
+              <MappingFragment StoreEntitySet="Saticilar">
+                <ScalarProperty Name="satici_id" ColumnName="satici_id" />
+                <ScalarProperty Name="sirket_adi" ColumnName="sirket_adi" />
+                <ScalarProperty Name="satici_ad_soyad" ColumnName="satici_ad_soyad" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="ulke" ColumnName="ulke" />
+                <ScalarProperty Name="sehir" ColumnName="sehir" />
+                <ScalarProperty Name="ilce" ColumnName="ilce" />
+                <ScalarProperty Name="musteri_id" ColumnName="musteri_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Siparisdetay">
+            <EntityTypeMapping TypeName="ticaretModel.Siparisdetay">
+              <MappingFragment StoreEntitySet="Siparisdetay">
+                <ScalarProperty Name="siparis_detay_id" ColumnName="siparis_detay_id" />
+                <ScalarProperty Name="urun_id" ColumnName="urun_id" />
+                <ScalarProperty Name="siparis_id" ColumnName="siparis_id" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+                <ScalarProperty Name="adet" ColumnName="adet" />
+                <ScalarProperty Name="toplam_fiyat" ColumnName="toplam_fiyat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Siparisler">
+            <EntityTypeMapping TypeName="ticaretModel.Siparisler">
+              <MappingFragment StoreEntitySet="Siparisler">
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="adres_tanimi" ColumnName="adres_tanimi" />
+                <ScalarProperty Name="ad_soyad" ColumnName="ad_soyad" />
+                <ScalarProperty Name="siparis_id" ColumnName="siparis_id" />
+                <ScalarProperty Name="musteri_id" ColumnName="musteri_id" />
+                <ScalarProperty Name="odeme_id" ColumnName="odeme_id" />
+                <ScalarProperty Name="siparis_tarihi" ColumnName="siparis_tarihi" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+                <ScalarProperty Name="durum" ColumnName="durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Urunler">
+            <EntityTypeMapping TypeName="ticaretModel.Urunler">
+              <MappingFragment StoreEntitySet="Urunler">
+                <ScalarProperty Name="picture" ColumnName="picture" />
+                <ScalarProperty Name="urun_id" ColumnName="urun_id" />
+                <ScalarProperty Name="urun_adi" ColumnName="urun_adi" />
+                <ScalarProperty Name="aciklamasi" ColumnName="aciklamasi" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+                <ScalarProperty Name="stok" ColumnName="stok" />
+                <ScalarProperty Name="satici_id" ColumnName="satici_id" />
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ticaretModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sepet">
+            <EntityTypeMapping TypeName="ticaretModel.Sepet">
+              <MappingFragment StoreEntitySet="Sepet">
+                <ScalarProperty Name="adet" ColumnName="adet" />
+                <ScalarProperty Name="urun_id" ColumnName="urun_id" />
+                <ScalarProperty Name="musteri_id" ColumnName="musteri_id" />
+                <ScalarProperty Name="sepet_id" ColumnName="sepet_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Favoriler">
+            <EntityTypeMapping TypeName="ticaretModel.Favoriler">
+              <MappingFragment StoreEntitySet="Favoriler">
+                <ScalarProperty Name="urun_id" ColumnName="urun_id" />
+                <ScalarProperty Name="musteri_id" ColumnName="musteri_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KartBilgileri">
+            <EntityTypeMapping TypeName="ticaretModel.KartBilgileri">
+              <MappingFragment StoreEntitySet="KartBilgileri">
+                <ScalarProperty Name="odeme_tipi" ColumnName="odeme_tipi" />
+                <ScalarProperty Name="musteri_id" ColumnName="musteri_id" />
+                <ScalarProperty Name="SonKullanmaTarihi" ColumnName="SonKullanmaTarihi" />
+                <ScalarProperty Name="Cvv" ColumnName="Cvv" />
+                <ScalarProperty Name="kart_numarasi" ColumnName="kart_numarasi" />
+                <ScalarProperty Name="kart_id" ColumnName="kart_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

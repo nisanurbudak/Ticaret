@@ -1,0 +1,59 @@
+﻿@model Ticaret.Models.Musteriler
+@{
+    ViewBag.Title = "Adres";
+}
+
+<div class="text-center">
+    <h2>Adres Bilgisi</h2>
+    <div>
+        <strong>Ad Soyad:</strong> @Model.ad_soyad <br />
+        <strong>Adres:</strong> @Model.adres <br />
+        <strong>Ülke:</strong> @Model.ulke <br />
+        <strong>Şehir:</strong> @Model.sehir <br />
+        <strong>İlçe:</strong> @Model.ilce <br />
+    </div>
+    <h2></h2>
+    @using (Html.BeginForm("Edit1", "Musterilers", FormMethod.Get, new { @class = "d-inline" }))
+    {
+        @Html.Hidden("id", Model.musteri_id)
+        <button type="submit" class="btn btn-primary">Adres Bilgilerini Düzenle <i class="fa fa-map-marker" aria-hidden="true"></i></button>
+    }
+    <hr />
+    <h2></h2>
+    @using (Html.BeginForm("OdemeSecimi", "Sepet", FormMethod.Post))
+    {
+        <h3>Ödeme Türü Seçimi</h3>
+        <label>
+            <input type="radio" name="odemeTipi" value="Kapıda Ödeme " checked /> Kapıda Ödeme
+        </label>
+        <label>
+            <input type="radio" name="odemeTipi" value="Kartla Ödeme" /> Kart ile Ödeme
+        </label>
+        <br />
+        <h2></h2>
+        <hr />
+        <button type="submit" class="btn btn-success">Sipariş oluştur <i class="fa fa-shopping-bag" aria-hidden="true"></i></button>
+    }
+
+    <h2></h2>
+    <hr />
+    <div class="text-center">
+        <a href="@Url.Action("Index", "Sepet")" class="btn btn-danger">
+            İptal <i class="fa fa-times"></i>
+        </a>
+
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var form = document.querySelector("form[action='/Sepet/OdemeSecimi']");
+        form.addEventListener("submit", function (event) {
+            var odemeTipi = document.querySelector('input[name="odemeTipi"]:checked').value;
+            if (odemeTipi === "Kartla Ödeme") {
+                event.preventDefault(); 
+                window.location.href = '@Url.Action("KartBilgileri", "KartBilgileri")'; 
+            }
+        });
+    });
+</script>

@@ -1,0 +1,44 @@
+﻿@model List<Ticaret.Models.Siparisler>
+
+@{
+    ViewBag.Title = "Index1";
+}
+
+<h2>Siparişlerim</h2>
+@if (!Model.Any())
+{
+    <p class="text-warning">Geçmiş Siparişiniz Bulunmamaktadır.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Sipariş ID</th>
+                <th>Sipariş Tarihi</th>
+                <th>Fiyat</th>
+                <th>Durum</th>
+                <th>Adres</th>
+                <th>Ödeme Tercihi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var siparis in Model)
+            {
+                <tr>
+                    <td>@siparis.siparis_id</td>
+                    <td>@siparis.siparis_tarihi</td>
+                    <td>@siparis.fiyat</td>
+                    <td>@siparis.durum</td>
+                    <td>@siparis.Musteriler.adres</td>
+                    <td>@(siparis.Odemeler != null ? siparis.Odemeler.odeme_tipi : "Belirtilmemiş")</td>
+                    <td>
+                      
+                        <a href="@Url.Action("SiparisDetaylari", "Siparisler", new { id =  siparis.siparis_id })" class="btn btn-primary w-100">Sipariş Detaylarına Git <i class="fas fa-forward" style="color: white; font-size: 15px;"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}

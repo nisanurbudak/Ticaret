@@ -1,0 +1,50 @@
+﻿@model Ticaret.Models.kategoriler
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Düzenle</h2>
+
+@using (Html.BeginForm("Edit", "kategorilers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.kategori_id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.kategori_ad, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.kategori_ad, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.kategori_ad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.kategori_resim, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <p>Mevcut Resim:</p>
+            <img src="@Model.kategori_resim" alt="kategori Image" style="max-width: 200px; max-height: 200px;" />
+            <p>Yeni Resim Yükle:</p>
+            <input type="file" name="newKategori_resim" class="form-control" />
+        </div>
+    </div>
+    <h2></h2>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Kaydet" class="btn btn-success" />
+        </div>
+    </div>
+    <div class="form-group" style="margin-top: 20px;">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("Geri Dön", "Index", "kategorilers", null, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+
+</div>
+}
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ceca1a5ef0ca4e3c86268e4d36bb7e50" Name="Diagram1">
+        <EntityTypeShape EntityType="ticaretModel.kategoriler" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="ticaretModel.Musteriler" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ticaretModel.Odemeler" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ticaretModel.Roller" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ticaretModel.Saticilar" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ticaretModel.Siparisdetay" Width="1.5" PointX="7.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ticaretModel.Siparisler" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ticaretModel.Urunler" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="ticaretModel.FK__Urunler__kategor__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="ticaretModel.FK__Saticilar__muste__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="ticaretModel.FK__Siparisle__muste__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="ticaretModel.FK__Urunler__satici___412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="ticaretModel.FK__Siparisde__sipar__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="ticaretModel.FK__Siparisde__urun___44FF419A" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ticaretModel.sysdiagrams" Width="1.5" PointX="8.375" PointY="6.75" />
+        <EntityTypeShape EntityType="ticaretModel.Sepet" Width="1.5" PointX="10.5" PointY="2.75" />
+        <AssociationConnector Association="ticaretModel.FK_Sepet_Musteriler" />
+        <AssociationConnector Association="ticaretModel.FK_Sepet_Urunler" />
+        <EntityTypeShape EntityType="ticaretModel.Favoriler" Width="1.5" PointX="10.5" PointY="0.75" />
+        <AssociationConnector Association="ticaretModel.FK_Favoriler_Musteriler" />
+        <AssociationConnector Association="ticaretModel.FK_Favoriler_Urunler" />
+        <AssociationConnector Association="ticaretModel.FK_Siparisler_Odemeler" />
+        <AssociationConnector Association="ticaretModel.FK_Odemeler_Siparisler" />
+        <EntityTypeShape EntityType="ticaretModel.KartBilgileri" Width="1.5" PointX="0.75" PointY="9.5" />
+        <AssociationConnector Association="ticaretModel.FK_KartBilgileri_Musteriler" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

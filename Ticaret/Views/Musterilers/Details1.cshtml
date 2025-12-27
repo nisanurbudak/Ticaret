@@ -1,0 +1,97 @@
+﻿@model Ticaret.Models.Musteriler
+
+@{
+    ViewBag.Title = "Detaylar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Detaylar</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ad_soyad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ad_soyad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kullanici_adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kullanici_adi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sifre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sifre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ulke)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ulke)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sehir)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sehir)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ilce)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ilce)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Düzenle", "Edit2", new { id = Model.musteri_id }, new { @class = "btn btn-success" })
+
+
+    <div class="form-group" style="margin-top: 20px;">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("Geri Dön", "Index", "Musterilers", null, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+
+</p>

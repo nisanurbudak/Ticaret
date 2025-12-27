@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Ticaret.Models.Saticilar>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="form-actions no-color" style="display: inline-block; text-align: center;">
+    @Html.ActionLink("Yeni Satıcı Oluştur", "Create", "Saticilar", null, new { @class = "btn btn-success" })
+</div>
+<h2></h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.sirket_adi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.satici_ad_soyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ulke)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sehir)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ilce)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.sirket_adi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.satici_ad_soyad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ulke)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sehir)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ilce)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.satici_id }) |
+            @Html.ActionLink("Detaylar", "Details", new { id=item.satici_id }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.satici_id })
+        </td>
+    </tr>
+}
+
+</table>

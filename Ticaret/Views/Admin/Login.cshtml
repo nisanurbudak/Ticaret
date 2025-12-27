@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "Admin Girişi";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            max-width: 400px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .login-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+            .login-header h2 {
+                margin-bottom: 0;
+                font-size: 24px;
+                color: #333;
+            }
+
+        .alert {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+                border-color: #004085;
+            }
+
+        .form-control {
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h2>Admin Girişi</h2>
+        </div>
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+
+        @using (Html.BeginForm("Login", "Admin", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.Label("Kullanıcı Adı", htmlAttributes: new { @class = "control-label" })
+                @Html.TextBox("username", null, new { @class = "form-control", placeholder = "Kullanıcı Adı" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Şifre", htmlAttributes: new { @class = "control-label" })
+                @Html.TextBox("password", null, new { @class = "form-control", placeholder = "Şifre" })
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+            <div class="form-group" style="margin-top: 20px; text-align: center;">
+                <div class="col-md-12">
+                    @Html.ActionLink("Vazgeç", "Hesap", "Home", null, new { @class = "btn btn-danger" })
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

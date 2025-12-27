@@ -1,0 +1,156 @@
+﻿@model List<Ticaret.Models.Urunler>
+@{
+    ViewBag.Title = "Ürünler";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="success-message" class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="error-message" class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<head>
+    <style>
+        .description {
+            max-height: 4.5em; 
+            overflow: hidden;
+            position: relative;
+        }
+         
+        .toggle-description {
+            display: block;
+            margin-top: 5px;
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<div class="row">
+    <div class="col-md-3">
+        <h4>Kategoriler</h4>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="@Url.Action("Index1", "Urunler")">Tüm Ürünler</a>
+            </li>
+            
+            
+            @if (ViewBag.kategoriler != null)
+            {
+                foreach (var kategori in ViewBag.kategoriler)
+                {
+
+                    <li class="list-group-item">
+                        <a href="@Url.Action("Index1", "Urunler", new { kategori_id = kategori.kategori_id })">
+                            @kategori.kategori_ad
+                        </a>
+                    </li>
+                }
+            }
+            else
+            {
+                <li class="list-group-item">Kategoriler yüklenemedi.</li>
+            }
+        </ul>
+
+    </div>
+    <div class="col-md-9">
+        <h2>
+            @if (ViewBag.SelectedKategori != null)
+            {
+                @ViewBag.SelectedKategori
+            }
+            else
+            {
+                <h2>Tüm Ürünler</h2>
+            }
+        </h2>
+
+        <p style="color: #ff6347; font-size: 1.5em; font-weight: bold; text-align: center; padding: 10px; background-color: #f9f9f9; border-radius: 10px; border: 2px solid #ff6347;">
+            @ViewBag.UrunSayisi adet ürün bulundu.
+        </p>
+
+        <form class="form-inline d-flex mb-3" action="@Url.Action("Index1", "Urunler")" method="get">
+            <input type="text" name="searchQuery" class="form-control mr-2 " placeholder="Ürünlerde Ara ">
+            <button type="submit" class="btn btn-outline-success">Ara</button>
+        </form>
+
+
+        <div class="row">
+            @foreach (var urun in Model)
+            {
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            @urun.Saticilar.sirket_adi
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="flex-grow-1">
+                                <div class="text-center">
+                                    <img src="@urun.picture" alt="Ürün Resmi" class="img-fluid" style="max-width: 100%; max-height: 150px; object-fit: cover;" />
+                                </div>
+
+                                <h2></h2>
+                                <h5 class="card-title">@urun.urun_adi</h5>
+
+                                <p class="card-text description">
+                                    @urun.aciklamasi
+                                </p>
+                                <a href="@Url.Action("Details1", "Urunler", new { id = urun.urun_id })" class="toggle-description">Daha fazla göster</a>
+
+                                <hr />
+                                <h6 class="card-tittle">Fiyat: @urun.fiyat</h6>
+                                <hr />
+                            </div>
+                            <div class="mt-3">
+
+                                <form action="@Url.Action("AddToFavorites", "Favoriler")" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="urun_id" value="@urun.urun_id" />
+                                    <button type="submit" class="btn btn-link p-0">
+                                        <i class="fas fa-heart" style="color: red; font-size: 24px;"></i>
+                                    </button>
+                                </form>
+                                <h2></h2>
+                                <form action="@Url.Action("SepeteEkle", "Sepet")" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="urun_id" value="@urun.urun_id" />
+                                    <button type="submit" class="btn btn-primary w-100 mb-2">Sepete Ekle <i class="fas fa-shopping-cart" style="color: white; font-size: 15px;"></i></button>
+                                </form>
+                                <a href="@Url.Action("Details1", "Urunler", new { id = urun.urun_id })" class="btn btn-secondary w-100">Ürüne Git <i class="fas fa-forward" style="color: white; font-size: 15px;"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+            var successMessage = document.getElementById('success-message');
+            if (successMessage) {
+                successMessage.style.display = 'none';
+            }
+            var errorMessage = document.getElementById('error-message');
+            if (errorMessage) {
+                errorMessage.style.display = 'none';
+            }
+        }, 2000);
+    });
+</script>

@@ -1,0 +1,53 @@
+﻿@model Ticaret.Models.SiparisDetayViewModel
+@{
+    ViewBag.Title = "KartliSiparisDetaylari";
+}
+
+<h2>Sipariş Detayları</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sipariş ID</th>
+            <th>Ürün Resmi</th>
+            <th>Ürün Adı</th>
+            <th>Fiyat</th>
+            <th>Adet</th>
+            <th>Toplam Fiyat</th>
+            <th>Ödeme Detayları</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detay in Model.SiparisDetaylari)
+        {
+            <tr>
+                @if (detay == Model.SiparisDetaylari.FirstOrDefault(sd => sd.siparis_id == detay.siparis_id))
+                {
+                    <td rowspan="@Model.SiparisDetaylari.Count(sd => sd.siparis_id == detay.siparis_id)">@detay.siparis_id</td>
+                }
+                <td><img src="@detay.Urunler.picture" alt="Ürün Resmi" style="max-width: 100px;" /></td>
+                <td>@detay.Urunler.urun_adi</td>
+                <td>@detay.fiyat</td>
+                <td>@detay.adet</td>
+                <td>@detay.toplam_fiyat</td>
+                
+                <td>
+                    <p>Kart Numarası: @Model.KartBilgileri.kart_numarasi</p>
+                    <p>CVV: @Model.KartBilgileri.Cvv</p>
+                    <p>Son Kullanma Tarihi: @(Model.KartBilgileri.SonKullanmaTarihi.HasValue ? Model.KartBilgileri.SonKullanmaTarihi.Value.ToString("MM/yyyy") : "Bilgi Yok")</p>
+                </td>
+                
+                <td>
+                    <a href="@Url.Action("Details1", "Urunler", new { id =  detay.Urunler.urun_id })" class="btn btn-primary w-80">Ürüne Git <i class="fas fa-forward" style="color: white;font-size: 15px;"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<p>
+    <a href="@Url.Action("Index1", "Siparisler")" class="btn btn-danger w-80">Geri Dön <i class="fas fa-backward" style="color: white; font-size: 15px;"></i></a>
+
+</p>
+

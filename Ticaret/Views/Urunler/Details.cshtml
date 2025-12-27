@@ -1,0 +1,81 @@
+﻿@model Ticaret.Models.Urunler
+
+@{
+    ViewBag.Title = "Detaylar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Detaylar</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.urun_adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.urun_adi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aciklamasi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aciklamasi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fiyat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fiyat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stok)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stok)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kategoriler.kategori_ad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kategoriler.kategori_ad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Saticilar.sirket_adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Saticilar.sirket_adi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.picture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.picture)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.urun_id }, new { @class = "btn btn-success" })
+
+
+    <div class="form-group" style="margin-top: 20px;">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("Geri Dön", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+
+</p>
